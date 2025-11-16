@@ -30,4 +30,3 @@ names(tdat) = c("age", "temp")
 
 # Ring dataset
 tring = read.csv("out/RingTemp.csv")
-

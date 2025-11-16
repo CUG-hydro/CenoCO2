@@ -3,7 +3,6 @@
 ## Load libraries
 library(R2jags)
 library(openxlsx)
-source("code/Helpers.R")
 
 # 500 kyr bins for main text ----
 
