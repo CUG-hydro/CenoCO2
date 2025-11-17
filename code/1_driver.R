@@ -7,7 +7,7 @@ library(openxlsx)
 # 500 kyr bins for main text ----
 
 ## Set up ages vector
-ages.bin <- 0.5
+ages.bin <- 0.2
 ages <- agevec(70, ages.bin)
 ages.len <- length(ages)
 

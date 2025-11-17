@@ -39,7 +39,7 @@ p <- do.call(jags.parallel, list(
   data = dat, inits = NULL, n.chains = 4, n.iter = n.iter,
   n.burnin = n.burnin, n.thin = n.thin
 ))
-proc.time() - pt
+print(proc.time() - pt)
 
 save(p, file = "bigout/postTemp.rda")
 
@@ -69,6 +69,6 @@ p <- do.call(jags.parallel, list(
   data = dat, inits = NULL, n.chains = 4, n.iter = n.iter,
   n.burnin = n.burnin, n.thin = n.thin
 ))
-proc.time() - pt
+print(proc.time() - pt)
 
 save(p, file = "bigout/postTemp100kyr.rda")
