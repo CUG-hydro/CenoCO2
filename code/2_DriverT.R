@@ -1,3 +1,4 @@
+# cost about 1.5 hours
 # Prep ----
 
 ## Load libraries
@@ -16,7 +17,7 @@ names(d) <- c("age", "temp")
 # 500 kyr for paper ----
 
 ## Set up ages vector
-ages.bin <- 0.5
+ages.bin <- 0.2
 ages <- seq(70, 0, by = 0 - ages.bin) - ages.bin / 2
 ages.len <- length(ages)
 
@@ -40,8 +41,7 @@ p <- do.call(jags.parallel, list(
   n.burnin = n.burnin, n.thin = n.thin
 ))
 print(proc.time() - pt)
-
-save(p, file = "bigout/postTemp.rda")
+save(p, file = "bigout/postTemp200kyr.rda")
 
 # 100 kyr for stripes ----
 
@@ -70,5 +70,4 @@ p <- do.call(jags.parallel, list(
   n.burnin = n.burnin, n.thin = n.thin
 ))
 print(proc.time() - pt)
-
 save(p, file = "bigout/postTemp100kyr.rda")

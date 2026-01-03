@@ -1,5 +1,3 @@
-# Preliminaries ----
-
 ## Load libraries
 library(R2jags)
 library(openxlsx)
@@ -11,8 +9,7 @@ ages.bin <- 0.2
 ages <- agevec(70, ages.bin)
 ages.len <- length(ages)
 
-## Prep data
-d <- prepit("231218_proxies.xlsx")
+d <- prepit("231218_proxies.xlsx") ## Prep data
 
 ## Parse localities
 locs <- unique(d$pco2.loc)
@@ -42,18 +39,21 @@ dat <- list(
 parameters <- c("pco2_m", "pco2_m.pre", "pco2_m.eps.ac", "pco2.off", "pco2.ai")
 
 ## Run it
-n.iter <- 1e6
-n.burnin <- 1e5
-n.thin <- trunc((n.iter - n.burnin) / 2500)
+n.iter = 1e6
+n.burnin = 1e5
+n.thin = trunc((n.iter - n.burnin) / 2500)
 pt <- proc.time()
 p <- do.call(jags.parallel, list(
   model.file = "code/models/model.R", parameters.to.save = parameters,
-  data = dat, inits = NULL, n.chains = 4, n.iter = n.iter,
-  n.burnin = n.burnin, n.thin = n.thin
+  data = dat, inits = NULL, n.chains = 4, 
+  n.iter = n.iter, n.burnin = n.burnin, n.thin = n.thin
 ))
-proc.time() - pt
+print(proc.time() - pt)
 
 save(p, file = "bigout/postCenoLERAM.rda")
+
+
+
 
 # 1 Myr bins for SI ----
 
@@ -105,7 +105,7 @@ p <- do.call(
     n.burnin = n.burnin, n.thin = n.thin
   )
 )
-proc.time() - pt
+print(proc.time() - pt)
 
 save(p, file = "bigout/postCeno1Myr.rda")
 
@@ -156,14 +156,14 @@ p <- do.call(jags.parallel, list(
   data = dat, inits = NULL, n.chains = 4, n.iter = n.iter,
   n.burnin = n.burnin, n.thin = n.thin
 ))
-proc.time() - pt
+print(proc.time() - pt)
 
 save(p, file = "bigout/postCeno100kyr.rda")
 
 # Marine only for SI ----
 
 ## Set up ages vector
-ages.bin <- 0.5
+ages.bin <- 0.2
 ages <- agevec(70, ages.bin)
 ages.len <- length(ages)
 
@@ -208,6 +208,5 @@ p <- do.call(jags.parallel, list(
   data = dat, inits = NULL, n.chains = 4, n.iter = n.iter,
   n.burnin = n.burnin, n.thin = n.thin
 ))
-proc.time() - pt
-
-save(p, file = "bigout/postCenoMarOnly.rda")
+print(proc.time() - pt)
+save(p, file = "bigout/postCeno200kyr_MarOnly.rda")

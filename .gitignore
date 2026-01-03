@@ -41,3 +41,8 @@ vignettes/*.pdf
 # Output
 bigout/
 inst
+
+test
+out
+*.log
+log.txt
