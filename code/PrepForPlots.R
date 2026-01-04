@@ -8,10 +8,10 @@ dat = prepit("231218_proxies.xlsx")
 # Read curves
 cp <- read.csv("out/200kyrCO2.csv")
 tp <- read.csv("out/200kyrTemp.csv")
+cpm = read.csv("out/200kyrCO2MarOnly.csv")
 
 cp1M = read.csv("out/1MyrCO2.csv")
 cp100k = read.csv("out/100kyrCO2.csv")
-cpm = read.csv("out/500kyrCO2MarOnly.csv")
 
 # Trim to only Cenozoic and modify for ESS plot
 cp.c = cp[-(1:4), -c(3,5)]
